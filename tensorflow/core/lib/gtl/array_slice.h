@@ -92,6 +92,7 @@ namespace gtl {
 template <typename T>
 class ArraySlice {
  private:
+  // 内部真正的数组类型
   typedef array_slice_internal::ArraySliceImpl<T> Impl;
 
  public:

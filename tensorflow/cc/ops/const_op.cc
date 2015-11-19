@@ -31,6 +31,7 @@ const string& OpName() {
     if (options.HaveError()) return nullptr;                                   \
     NodeBuilder node_builder(options.GetNameForOp(OpName()), OpName(),         \
                              options.op_registry());                           \
+	/* dt, dtype 是 DataType 的缩写 */                                         \
     const DataType dt = DataTypeToEnum<TYPE>::v();                             \
     if (t.size() == 1) {                                                       \
       TensorProto proto;                                                       \
@@ -39,6 +40,8 @@ const string& OpName() {
       __VA_ARGS__;                                                             \
       node_builder.Attr("dtype", dt).Attr("value", proto);                     \
     } else {                                                                   \
+	  /*  Tensor - core/public/tensor.h      */                                \
+	  /*  Tensor - core/framework/tensor.cc  */                                \
       Tensor tensor(dt, shape);                                                \
       if (tensor.NumElements() != static_cast<int64>(t.size())) {              \
         options.UpdateStatus(errors::InvalidArgument(                          \
@@ -61,6 +64,8 @@ const string& OpName() {
   DEFINE_CONST_IMPL(TYPE, proto.add_##FIELD(*t.begin());)
 
 DEFINE_CONST(float, float_val);
+// 即 DEFINE_CONST_IMPL(float, proto.add_float_val( *t.begin() );
+// *t.begin() 是第一个元素的值, t是ArraySlice<T>类型(vector)
 DEFINE_CONST(double, double_val);
 DEFINE_CONST(int32, int_val);
 DEFINE_CONST(uint8, int_val);

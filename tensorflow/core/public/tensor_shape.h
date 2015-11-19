@@ -21,6 +21,8 @@ class TensorShape {
   /// \brief Construct a `TensorShape` from the provided sizes.
   /// REQUIRES: `dim_sizes[i] >= 0`
   explicit TensorShape(gtl::ArraySlice<int64> dim_sizes);
+  
+  // 调用上面的构造函数
   TensorShape(std::initializer_list<int64> dim_sizes)
       : TensorShape(gtl::ArraySlice<int64>(dim_sizes)) {}
 

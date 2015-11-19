@@ -307,6 +307,7 @@ void ToProtoField(const TensorBuffer& in, int64 n, TensorProto* out) {
   ProtoHelper<T>::Fill(data, n, out);
 }
 
+// RefCounted 相当于 std::shared_ptr
 void RefIfNonNull(core::RefCounted* buf) {
   if (buf) buf->Ref();
 }
@@ -389,6 +390,8 @@ Tensor::Tensor(Allocator* a, DataType type, const TensorShape& shape)
   }
 }
 
+// 调用上面的构造函数
+// cpu_allocator() [core/framework/allocator.cc]
 Tensor::Tensor(DataType type, const TensorShape& shape)
     : Tensor(cpu_allocator(), type, shape) {}
 
