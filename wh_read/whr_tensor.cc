@@ -4,6 +4,16 @@ class Tensor {
 	DataType       type_;
 	TensorShape    shape_;
 	TensorBuffer*  buf_;
+	
+	// shaped(), 转换成新的shape
+	// 元素的数据类型变成T, 维度信息由new_sizes指定
+	// 原数据丢失
+	template <typename T, size_t NDIMS>
+    typename TTypes<T, NDIMS>::Tensor  // 模板化返回类型
+	Tensor::shaped(gtl::ArraySlice<int64> new_sizes);
+	
+	template <typename T>
+	typename TTypes<T>::Flat flat() { return shaped<T, 1>( {NumElements()} ); }
 }
 
 

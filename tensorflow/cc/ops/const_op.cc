@@ -40,8 +40,6 @@ const string& OpName() {
       __VA_ARGS__;                                                             \
       node_builder.Attr("dtype", dt).Attr("value", proto);                     \
     } else {                                                                   \
-	  /*  Tensor - core/public/tensor.h      */                                \
-	  /*  Tensor - core/framework/tensor.cc  */                                \
       Tensor tensor(dt, shape);                                                \
       if (tensor.NumElements() != static_cast<int64>(t.size())) {              \
         options.UpdateStatus(errors::InvalidArgument(                          \
