@@ -22,6 +22,7 @@ message AttrValue {
     // TODO(zhifengc/josh11b): implements list(func) if needed.
   }
 
+  //  oneof相当于union
   oneof value {
     bytes s = 2;                 // "string"
     int64 i = 3;                 // "int"
