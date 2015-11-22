@@ -21,6 +21,10 @@ message OpDef {
     // Human readable description.
     string description = 2;
 
+	// 描述一个或多个tensor的类型
+	// 一个tensor时, 设置字段"type"或"type_attr"
+	// 多个tensor时, 设置"number_attr"、"type"或"type_attr"
+	
     // Describes the type of one or more tensors that are accepted/produced
     // by this input/output arg.  The only legal combinations are:
     // * For a single tensor: either the "type" field is set or the
@@ -38,6 +42,8 @@ message OpDef {
     // type, type_attr, and number_attr may be specified.
     string type_list_attr = 6;
 
+	// 输入输出是否是引用
+	
     // For inputs: if true, the inputs are required to be refs.
     //   By default, inputs can be either refs or non-refs.
     // For outputs: if true, outputs are refs, otherwise they are not.

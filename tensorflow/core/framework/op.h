@@ -79,6 +79,7 @@ class OpRegistry : public OpRegistryInterface {
 
   mutable mutex mu_;
   // Functions in deferred_ may only be called with mu_ held.
+  // GUARDED_BY(mu_), 表示用互斥量 mu_ 保护下面3个成员变量
   mutable std::vector<std::function<OpDef(void)>> deferred_ GUARDED_BY(mu_);
   mutable std::unordered_map<string, OpDef*> registry_ GUARDED_BY(mu_);
   mutable bool initialized_ GUARDED_BY(mu_);

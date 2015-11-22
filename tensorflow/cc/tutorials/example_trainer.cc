@@ -40,7 +40,7 @@ GraphDef CreateGraphDef() {
   using namespace ::tensorflow::ops;  // NOLINT(build/namespaces)
   // Store rows [3, 2] and [-1, 0] in row major format.
   Node* a = Const({3.f, 2.f, -1.f, 0.f}, {2, 2}, b.opts());
-  // cc/ops/cost_op.cc定义各种类型的Const()函数
+  // cc/ops/const_op.cc定义各种类型的Const()函数
   // 3个形参的Const()由宏DEFINE_CONST_TENSOR(TYPE, ...)定义
 
   // x is from the feed.

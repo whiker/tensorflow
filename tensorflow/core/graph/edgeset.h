@@ -28,7 +28,10 @@ class EdgeSet {
   bool empty() const;
   size_type size() const;
   void clear();
+  
+  // pair<>的bool, true时表示插入了新元素
   std::pair<iterator, bool> insert(value_type value);
+  
   size_type erase(key_type key);
 
   // Caller is not allowed to mutate the EdgeSet while iterating.

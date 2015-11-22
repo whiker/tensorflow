@@ -18,10 +18,12 @@ std::pair<EdgeSet::const_iterator, bool> EdgeSet::insert(value_type value) {
       if (ptrs_[i] == nullptr) {
         ptrs_[i] = value;
         ci.array_iter_ = &ptrs_[i];
-        return std::make_pair(ci, true);
+        return std::make_pair(ci, true);  // 插入了新元素
       }
     }
     // array is full. convert to set.
+	// 把空间省到极致
+	// 超过 kInline 个Edge*要存时, 就用一个set<>
     s = new std::set<const Edge*>;
     for (int i = 0; i < kInline; i++) {
       s->insert(static_cast<const Edge*>(ptrs_[i]));
